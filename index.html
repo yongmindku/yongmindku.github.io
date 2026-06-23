@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>제19대 한국진공학회 회장 후보 김용민</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700;900&family=Noto+Sans+KR:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1B2129;
+    --ink-dim:#5A5547;
+    --paper:#FAF7EF;
+    --paper-2:#F0EBDC;
+    --card:#FFFFFF;
+    --navy:#1C2430;
+    --cyan:#127A82;
+    --cyan-soft:#5FD9DC;
+    --violet:#6A5ECF;
+    --gold:#9C7A2E;
+    --line: rgba(28,33,41,0.13);
+    --serif:'Noto Serif KR', serif;
+    --sans:'Noto Sans KR', sans-serif;
+    --mono:'JetBrains Mono', monospace;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.7;
+    overflow-x:hidden;
+  }
+  a{color:inherit; text-decoration:none;}
+
+  /* ---------- Ambient background ---------- */
+  .field{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    background:
+      radial-gradient(ellipse 70% 50% at 25% 15%, rgba(18,122,130,0.07), transparent 60%),
+      radial-gradient(ellipse 60% 45% at 80% 75%, rgba(106,94,207,0.06), transparent 60%),
+      var(--paper);
+  }
+  .field svg{position:absolute; inset:0; width:100%; height:100%; opacity:0.55;}
+  .particle{ animation: drift 18s ease-in-out infinite; }
+  @keyframes drift{
+    0%,100%{ transform: translateY(0px) translateX(0px); opacity:.4;}
+    50%{ transform: translateY(-22px) translateX(8px); opacity:.85;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .particle{animation:none;}
+    html{scroll-behavior:auto;}
+  }
+
+  /* ---------- Nav ---------- */
+  nav{
+    position:sticky; top:0; z-index:50;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 6vw;
+    background:rgba(250,247,239,0.86);
+    backdrop-filter: blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-mark{
+    font-family:var(--mono); font-size:12.5px; letter-spacing:.12em;
+    color:var(--cyan); display:flex; align-items:center; gap:8px;
+  }
+  .nav-mark::before{content:"⌬"; font-size:14px;}
+  .nav-links{display:flex; gap:28px; font-size:14px; color:var(--ink-dim);}
+  .nav-links a{position:relative; padding:4px 0; transition:color .25s;}
+  .nav-links a:hover{color:var(--cyan);}
+  .nav-links a:focus-visible, a:focus-visible{outline:2px solid var(--cyan); outline-offset:3px;}
+  @media (max-width:760px){ .nav-links{display:none;} }
+
+  section{position:relative; z-index:1;}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    min-height:100vh;
+    display:grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    align-items:center;
+    gap:4vw;
+    padding:8vh 6vw 6vh;
+  }
+  @media (max-width:900px){
+    .hero{grid-template-columns:1fr; padding-top:6vh; min-height:auto;}
+  }
+  .hero-text .eyebrow{
+    font-family:var(--mono); font-size:13px; letter-spacing:.18em;
+    color:var(--gold); margin-bottom:22px; display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{
+    content:""; width:34px; height:1px; background:var(--gold); display:inline-block;
+  }
+  .hero-text h1{
+    font-family:var(--serif); font-weight:900;
+    font-size:clamp(40px,6.4vw,76px);
+    line-height:1.08;
+    letter-spacing:-0.01em;
+    color:var(--ink);
+  }
+  .hero-text h1 .accent{
+    color:var(--cyan);
+    font-style:normal;
+  }
+  .hero-text .role{
+    font-family:var(--serif); font-weight:500; font-size:clamp(18px,2vw,23px);
+    color:var(--ink-dim); margin-top:18px; padding-bottom:24px;
+    border-bottom:1px solid var(--line);
+  }
+  .hero-text .pitch{
+    margin-top:24px; font-size:17px; color:var(--ink-dim); max-width:46ch;
+  }
+  .hero-cta{margin-top:36px; display:flex; gap:16px; flex-wrap:wrap;}
+  .btn{
+    font-family:var(--sans); font-weight:600; font-size:14.5px;
+    padding:14px 26px; border-radius:2px; cursor:pointer;
+    transition:all .25s; display:inline-flex; align-items:center; gap:8px;
+  }
+  .btn-primary{
+    background:var(--cyan); color:#FAF7EF; border:1px solid var(--cyan);
+  }
+  .btn-primary:hover{background:#0E646B; transform:translateY(-1px);}
+  .btn-ghost{
+    background:transparent; color:var(--ink); border:1px solid var(--line);
+  }
+  .btn-ghost:hover{border-color:var(--cyan); color:var(--cyan);}
+
+  .hero-photo{
+    position:relative; display:flex; justify-content:center;
+  }
+  .photo-frame{
+    position:relative; width:min(420px, 86vw);
+    border:1px solid var(--line);
+    background:var(--card);
+    padding:14px;
+    box-shadow: 0 18px 40px rgba(28,33,41,0.08);
+  }
+  .photo-frame img{
+    width:100%; display:block;
+    filter:grayscale(0.05) contrast(1.02);
+    background:var(--paper-2);
+  }
+  .photo-frame .corner{
+    position:absolute; width:22px; height:22px;
+    border-color:var(--gold);
+  }
+  .corner.tl{top:-1px; left:-1px; border-top:2px solid; border-left:2px solid;}
+  .corner.br{bottom:-1px; right:-1px; border-bottom:2px solid; border-right:2px solid;}
+  .photo-caption{
+    margin-top:18px; text-align:center; font-family:var(--mono);
+    font-size:12px; letter-spacing:.08em; color:var(--ink-dim); opacity:.7;
+  }
+
+  /* ---------- Section heading ---------- */
+  .section-pad{padding:9vh 6vw;}
+  .section-head{margin-bottom:48px; max-width:680px;}
+  .section-head .num{
+    font-family:var(--mono); font-size:13px; color:var(--cyan); letter-spacing:.15em; margin-bottom:14px; display:block;
+  }
+  .section-head h2{
+    font-family:var(--serif); font-weight:700; font-size:clamp(28px,3.6vw,42px); color:var(--ink);
+  }
+  .section-head p{margin-top:14px; color:var(--ink-dim); font-size:16px;}
+
+  /* ---------- Greeting ---------- */
+  .greeting{
+    background:var(--paper-2);
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  }
+  .greeting-body{
+    max-width:760px; font-size:17.5px; color:var(--ink-dim);
+  }
+  .greeting-body p{margin-bottom:20px;}
+  .greeting-body strong{color:var(--ink); font-weight:600;}
+  .signoff{
+    margin-top:36px; padding-top:28px; border-top:1px dashed var(--line);
+    font-family:var(--serif); font-size:19px; color:var(--ink);
+  }
+  .signoff .role-line{
+    display:block; font-family:var(--mono); font-size:12.5px; color:var(--gold);
+    letter-spacing:.06em; margin-bottom:8px;
+  }
+
+  /* ---------- Pledges ---------- */
+  .pledge-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
+  @media (max-width:900px){.pledge-grid{grid-template-columns:1fr;}}
+  .pledge-card{
+    background:var(--card); padding:38px 32px; position:relative;
+    border:1px solid var(--line);
+    border-top:3px solid var(--cyan);
+    transition:transform .25s, box-shadow .25s;
+  }
+  .pledge-card:nth-child(2){border-top-color:var(--violet);}
+  .pledge-card:nth-child(3){border-top-color:var(--gold);}
+  .pledge-card:hover{transform:translateY(-3px); box-shadow:0 16px 32px rgba(28,33,41,0.08);}
+  .pledge-card .gauge{
+    width:54px; height:54px; margin-bottom:26px;
+  }
+  .pledge-card .tag{
+    font-family:var(--mono); font-size:12px; color:var(--gold); letter-spacing:.12em; margin-bottom:10px; display:block;
+  }
+  .pledge-card h3{
+    font-family:var(--serif); font-size:21px; font-weight:600; color:var(--ink); margin-bottom:14px; line-height:1.4;
+  }
+  .pledge-card p{font-size:14.5px; color:var(--ink-dim); margin-bottom:10px;}
+  .pledge-card ul{list-style:none; margin-top:16px;}
+  .pledge-card li{
+    font-size:13.5px; color:var(--ink-dim); padding-left:16px; position:relative; margin-bottom:9px;
+  }
+  .pledge-card li::before{
+    content:"–"; position:absolute; left:0; color:var(--cyan);
+  }
+
+  /* ---------- Timeline / career ---------- */
+  .timeline{border-top:1px solid var(--line);}
+  .tl-row{
+    display:grid; grid-template-columns: 160px 1fr;
+    gap:24px;
+    padding:22px 0;
+    border-bottom:1px solid var(--line);
+  }
+  @media (max-width:640px){.tl-row{grid-template-columns:90px 1fr;}}
+  .tl-row .yr{
+    font-family:var(--mono); font-size:14px; color:var(--cyan); padding-top:2px;
+  }
+  .tl-row .desc h4{font-family:var(--sans); font-weight:600; font-size:15.5px; color:var(--ink); margin-bottom:4px;}
+  .tl-row .desc p{font-size:14px; color:var(--ink-dim);}
+  .tl-group-label{
+    font-family:var(--mono); font-size:12.5px; letter-spacing:.14em; color:var(--gold);
+    margin:46px 0 6px; text-transform:uppercase;
+  }
+  .tl-group-label:first-child{margin-top:0;}
+
+  /* ---------- Statement (소견서 full) ---------- */
+  .statement{
+    background:var(--paper-2);
+    border-top:1px solid var(--line);
+  }
+  .statement-body{
+    max-width:740px; font-family:var(--serif); font-size:17px; line-height:1.95; color:#2A2A22;
+    background:var(--card); border:1px solid var(--line); padding:48px 44px; position:relative;
+  }
+  .statement-body::before{
+    content:"“"; position:absolute; top:8px; left:18px; font-size:64px; color:var(--paper-2); font-family:var(--serif);
+  }
+  .statement-body p{margin-bottom:18px; position:relative;}
+  .statement-body h4{
+    font-family:var(--sans); font-weight:700; font-size:15px; color:var(--gold); margin:26px 0 10px;
+  }
+  .statement-sign{
+    margin-top:30px; text-align:right; font-weight:700; font-size:18px; letter-spacing:.04em; color:var(--ink);
+  }
+  @media (max-width:640px){.statement-body{padding:32px 22px;}}
+
+  /* ---------- Footer ---------- */
+  footer{
+    padding:50px 6vw 40px; border-top:1px solid var(--line);
+    display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:20px;
+    background:var(--paper);
+  }
+  footer .f-left{font-family:var(--serif); font-size:18px; color:var(--ink);}
+  footer .f-left span{display:block; font-family:var(--mono); font-size:12px; color:var(--ink-dim); margin-top:6px; letter-spacing:.05em;}
+  footer .f-right{font-family:var(--mono); font-size:12px; color:var(--ink-dim); text-align:right;}
+
+  ::selection{background:var(--cyan-soft); color:var(--ink);}
+</style>
+</head>
+<body>
+
+<div class="field">
+  <svg aria-hidden="true">
+    <circle class="particle" cx="12%" cy="22%" r="2" fill="#127A82" style="animation-delay:0s"/>
+    <circle class="particle" cx="80%" cy="15%" r="1.6" fill="#6A5ECF" style="animation-delay:2s"/>
+    <circle class="particle" cx="65%" cy="60%" r="2.2" fill="#9C7A2E" style="animation-delay:4s"/>
+    <circle class="particle" cx="30%" cy="78%" r="1.8" fill="#127A82" style="animation-delay:1s"/>
+    <circle class="particle" cx="90%" cy="85%" r="1.6" fill="#6A5ECF" style="animation-delay:3s"/>
+    <circle class="particle" cx="48%" cy="35%" r="1.4" fill="#127A82" style="animation-delay:5s"/>
+  </svg>
+</div>
+
+<nav>
+  <div class="nav-mark">KVS · 제19대 회장 선거</div>
+  <div class="nav-links">
+    <a href="#greeting">인사말</a>
+    <a href="#pledges">3대 공약</a>
+    <a href="#career">약력</a>
+    <a href="#statement">공식 소견서</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-text">
+    <div class="eyebrow">제19대 한국진공학회 회장 후보</div>
+    <h1>김용민,<br>현장에서 다음<br><span class="accent">20년</span>을 준비합니다</h1>
+    <div class="role">단국대학교 물리학과 교수 · 한국진공학회 22년</div>
+    <p class="pitch">2003년 한국진공학회와 인연을 맺은 이후, 편집위원장부터 부회장까지 학회 운영의 전 영역을 거쳤습니다. 그 경험을 바탕으로 AI·양자기술·우주산업 시대를 이끄는 진공학회를 만들겠습니다.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#pledges">3대 공약 보기</a>
+      <a class="btn btn-ghost" href="#statement">공식 소견서 전문</a>
+    </div>
+  </div>
+  <div class="hero-photo">
+    <div class="photo-frame">
+      <div class="corner tl"></div>
+      <div class="corner br"></div>
+      <img src="photo.png" alt="김용민 교수 증명사진">
+    </div>
+  </div>
+</section>
+
+<!-- GREETING -->
+<section class="greeting section-pad" id="greeting">
+  <div class="section-head">
+    <span class="num">01 · 인사말</span>
+    <h2>존경하는 한국진공학회<br>회원 여러분께</h2>
+  </div>
+  <div class="greeting-body">
+    <p>한국진공학회는 1991년 창립 이래 <strong>34년</strong>이라는 긴 세월 동안 회원 여러분의 헌신과 열정으로 국내 진공과학 및 진공산업을 이끌어 온 명실상부한 핵심 학술단체로 성장하였습니다.</p>
+    <p>저는 <strong>2003년</strong> 한국진공학회와 인연을 맺은 이후 학회 운영의 전 영역을 두루 경험하였습니다. 이러한 경험과 회원 여러분에 대한 깊은 감사한 마음을 바탕으로, 이제 그 보답을 드리고자 제19대 한국진공학회 회장 후보로 출마하게 되었습니다.</p>
+    <p>회원 여러분께서 저에게 회장의 소임을 맡겨 주신다면, 선배 회원님들이 쌓아 오신 소중한 유산을 굳건히 계승하면서도 <strong>AI·양자기술·우주산업</strong>이라는 새로운 물결 속에서 한국진공학회가 시대를 선도하는 학회로 도약할 수 있도록 핵심 과제를 회원 여러분과 함께 반드시 실현하겠습니다.</p>
+    <div class="signoff">
+      <span class="role-line">제19대 한국진공학회 회장 후보</span>
+      김 용 민
+    </div>
+  </div>
+</section>
+
+<!-- PLEDGES -->
+<section class="section-pad" id="pledges">
+  <div class="section-head">
+    <span class="num">02 · 핵심 과제</span>
+    <h2>3대 공약</h2>
+    <p>22년간 학회 운영의 전 영역에서 쌓아온 경험을 바탕으로, 회원과 산업이 함께 성장하는 학회를 만들겠습니다.</p>
+  </div>
+  <div class="pledge-grid">
+    <div class="pledge-card">
+      <svg class="gauge" viewBox="0 0 54 54" fill="none"><circle cx="27" cy="27" r="22" stroke="#127A82" stroke-width="2" stroke-dasharray="4 5"/><circle cx="27" cy="27" r="13" stroke="#127A82" stroke-width="1.4"/><circle cx="27" cy="27" r="3" fill="#127A82"/></svg>
+      <span class="tag">PLEDGE 01</span>
+      <h3>회원 중심의<br>열린 학술 플랫폼</h3>
+      <p>하계·동계 정기학술대회를 내실 있게 운영하고, 분과별 특화 심포지엄과 워크숍을 확대합니다.</p>
+      <ul>
+        <li>청년 연구자 멘토링·우수논문 발표 지원 확대</li>
+        <li>학술지 ASCT의 SCIE 진입 로드맵 수립</li>
+        <li>편집 역량 강화 및 우수 논문 유치 투자</li>
+      </ul>
+    </div>
+    <div class="pledge-card">
+      <svg class="gauge" viewBox="0 0 54 54" fill="none"><circle cx="27" cy="27" r="22" stroke="#6A5ECF" stroke-width="2" stroke-dasharray="4 5"/><path d="M27 6 L27 48 M6 27 L48 27" stroke="#6A5ECF" stroke-width="1.2" stroke-opacity="0.5"/><circle cx="27" cy="27" r="3" fill="#6A5ECF"/></svg>
+      <span class="tag">PLEDGE 02</span>
+      <h3>학술 국제화와<br>글로벌 네트워크</h3>
+      <p>미국·일본·중국·대만 진공학회와의 교류 전통을 이어가며 학회의 국제적 위상을 높입니다.</p>
+      <ul>
+        <li>IFFM·ICMAP 국제학술대회와 KVS 공동 개최 발전</li>
+        <li>IUVSTA 공동 프로젝트 확대, AI·우주기술 의제 발굴</li>
+        <li>ICTF21(2029)·IVC-25(2031) 성공 개최 초석 마련</li>
+      </ul>
+    </div>
+    <div class="pledge-card">
+      <svg class="gauge" viewBox="0 0 54 54" fill="none"><circle cx="27" cy="27" r="22" stroke="#9C7A2E" stroke-width="2" stroke-dasharray="4 5"/><rect x="17" y="17" width="20" height="20" stroke="#9C7A2E" stroke-width="1.3" transform="rotate(45 27 27)"/><circle cx="27" cy="27" r="3" fill="#9C7A2E"/></svg>
+      <span class="tag">PLEDGE 03</span>
+      <h3>실질적인<br>산학연 협력 생태계</h3>
+      <p>역대 집행부가 구축한 산학연 협력 기반을 계승·발전시켜 실질적인 협력 체계를 강화합니다.</p>
+      <ul>
+        <li>기업-학·연 연구 성과 연결 상시 온라인 매칭 시스템</li>
+        <li>한국진공기술연구조합과의 긴밀한 협력</li>
+        <li>산업체 참여 특별 기술 세션·채용 연계 프로그램 신설</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CAREER -->
+<section class="section-pad" id="career">
+  <div class="section-head">
+    <span class="num">03 · 약력</span>
+    <h2>학문과 학회,<br>두 길을 함께 걸어온 22년</h2>
+    <p>성명 김용민 · 1963년 2월 26일생 · 단국대학교 과학기술대학 물리학과 교수</p>
+  </div>
+
+  <div class="timeline">
+    <div class="tl-group-label">학력</div>
+    <div class="tl-row">
+      <div class="yr">1991–1996</div>
+      <div class="desc"><h4>Northeastern University, Boston</h4><p>Department of Physics, Ph.D.</p></div>
+    </div>
+    <div class="tl-row">
+      <div class="yr">1988–1990</div>
+      <div class="desc"><h4>성균관대학교 물리학과</h4><p>이학석사</p></div>
+    </div>
+    <div class="tl-row">
+      <div class="yr">1980–1987</div>
+      <div class="desc"><h4>성균관대학교 물리학과</h4><p>이학사 (1982.10–1985.05 군복무)</p></div>
+    </div>
+
+    <div class="tl-group-label">연구 및 교육 경력</div>
+    <div class="tl-row">
+      <div class="yr">1996–2000</div>
+      <div class="desc"><h4>Los Alamos National Laboratory, USA</h4><p>Postdoctoral Research Fellow</p></div>
+    </div>
+    <div class="tl-row">
+      <div class="yr">2000–2001</div>
+      <div class="desc"><h4>동국대학교</h4><p>연구교수, Quantum-Functional Semiconductor Research Center</p></div>
+    </div>
+    <div class="tl-row">
+      <div class="yr">2001–현재</div>
+      <div class="desc"><h4>단국대학교 응용물리학과 / 물리학과</h4><p>조교수 → 부교수 → 교수</p></div>
+    </div>
+    <div class="tl-row">
+      <div class="yr">2008–2009</div>
+      <div class="desc"><h4>National Institute for Materials Science, Tsukuba, Japan</h4><p>방문연구원</p></div>
+    </div>
+    <div class="tl-row">
+      <div class="yr">2011–2022</div>
+      <div class="desc"><h4>Institute for Solid State Physics, 동경대학교</h4><p>방문교수 (2011–12 / 2017 / 2022)</p></div>
+    </div>
+
+    <div class="tl-group-label">한국진공학회 경력</div>
+    <div class="tl-row">
+      <div class="yr">2005–2007</div>
+      <div class="desc"><h4>편집위원장</h4></div>
+    </div>
+    <div class="tl-row">
+      <div class="yr">2011–2013</div>
+      <div class="desc"><h4>재무운영이사</h4></div>
+    </div>
+    <div class="tl-row">
+      <div class="yr">2013–2014</div>
+      <div class="desc"><h4>학술위원장 / 부회장</h4></div>
+    </div>
+    <div class="tl-row">
+      <div class="yr">2015–2016</div>
+      <div class="desc"><h4>포상심의위원장 / 부회장</h4></div>
+    </div>
+    <div class="tl-row">
+      <div class="yr">2016</div>
+      <div class="desc"><h4>IVC-20 Thin Films 분과학술위원</h4></div>
+    </div>
+    <div class="tl-row">
+      <div class="yr">2017–2022</div>
+      <div class="desc"><h4>국제교류위원회 위원장 / 부회장</h4><p>IUVSTA Executive Committee Member (alternative)</p></div>
+    </div>
+    <div class="tl-row">
+      <div class="yr">2023–2026</div>
+      <div class="desc"><h4>자격심의위원회 위원장 / 부회장</h4></div>
+    </div>
+
+    <div class="tl-group-label">기타 학회 및 학술활동</div>
+    <div class="tl-row">
+      <div class="yr">2017–2020</div>
+      <div class="desc"><h4>한국물리학회 반도체물리학 분과 위원장</h4></div>
+    </div>
+    <div class="tl-row">
+      <div class="yr">2004–현재</div>
+      <div class="desc"><h4>ISPSA</h4><p>Organizing Committee / Organizing Chair / Advisory Committee</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- STATEMENT -->
+<section class="statement section-pad" id="statement">
+  <div class="section-head">
+    <span class="num">04 · 공식 소견서</span>
+    <h2>제19대 한국진공학회<br>회장 후보 공식 소견서</h2>
+  </div>
+  <div class="statement-body">
+    <p>존경하는 한국진공학회 회원 여러분!</p>
+    <p>한국진공학회는 1991년 창립 이래 34년이라는 긴 세월 동안 회원 여러분의 헌신과 열정으로 국내 진공과학 및 진공산업을 이끌어 온 명실상부한 핵심 학술단체로 성장하였습니다.</p>
+    <p>저는 2003년 한국진공학회와 인연을 맺은 이후 학회 운영의 전 영역을 두루 경험하였습니다. 이러한 경험과 회원 여러분에 대한 깊은 감사한 마음을 바탕으로, 이제 그 보답을 드리고자 제19대 한국진공학회 회장 후보로 출마하게 되었습니다. 만약 회원 여러분께서 저에게 회장의 소임을 맡겨 주신다면, 선배 회원님들이 쌓아 오신 소중한 유산을 굳건히 계승하면서도 AI·양자기술·우주산업이라는 새로운 물결 속에서 한국진공학회가 시대를 선도하는 학회로 도약할 수 있도록 다음의 세 가지 핵심 과제를 회원 여러분과 함께 반드시 실현하겠습니다.</p>
+
+    <h4>1. 회원 중심의 열린 학술 플랫폼을 구축하겠습니다.</h4>
+    <p>학회의 가장 근본적인 사명은 회원들의 연구와 학술 활동을 적극적으로 지원하는 것입니다. 하계·동계 정기학술대회를 더욱 내실 있게 운영하고, 분과별 특화 심포지엄과 워크숍을 확대하여 신진 연구자들이 활발히 교류할 수 있는 장을 마련하겠습니다. 이를 위하여 청년 연구자 지원 강화: 대학원생·신진 교수를 위한 멘토링 프로그램 및 우수논문 발표 지원을 확대하여 차세대 진공과학 인재 양성에 힘쓰겠습니다. 또한 학술교류의 마당인 학술지 ASCT의 SCIE 진입을 위한 체계적인 로드맵을 수립하고, 편집 역량 강화와 우수 논문 유치에 집중 투자하겠습니다.</p>
+
+    <h4>2. 학술 활동의 국제화와 글로벌 네트워크를 한층 강화하겠습니다.</h4>
+    <p>미국·일본·중국·대만 진공학회와의 교류 전통을 이어가면서, 우리 학회의 국제적 위상을 한 단계 더 높이겠습니다. 이를 위하여 진공학회에서 주관하는 IFFM, ICMAP 국제학술대회와 KVS 정기 학술대회 공동 개최를 더욱 발전시켜 KVS를 아시아 진공과학의 허브로 만들겠습니다. 또한 국제진공과학기술응용연합(IUVSTA)과의 공동 프로젝트를 확대하고, AI·우주기술(ST) 분야를 새로운 국제 협력 의제로 발굴하여 학회의 외연을 넓혀, 국내 개최가 확정된 ICTF21(2029년), IVC-25(2031년)의 성공적 개최를 위한 초석을 마련하겠습니다.</p>
+
+    <h4>3. 실질적인 산학연 협력 생태계를 완성하겠습니다.</h4>
+    <p>한국진공학회는 진공 산업과 함께 성장해 온 학회입니다. 그 강점을 살려 산·학·연이 함께 성장할 수 있는 실질적인 협력 체계를 구축하고 강화하겠습니다. 이를 위하여 역대 집행부에서 구축한 산학연 협력 기반을 계승·발전시켜, 기업이 필요로 하는 기술과 학·연의 연구 성과를 연결하는 상시 온라인 매칭 시스템을 운영하겠습니다. 또한 한국진공기술연구조합과의 긴밀한 협력을 토대로, 산업체가 직접 참여하는 특별 기술 세션과 채용 연계 프로그램을 신설하겠습니다.</p>
+
+    <p>한국진공학회가 걸어온 34년의 역사는 회원 여러분 한 분 한 분이 써 내려간 자랑스러운 기록입니다. 저는 그 기록 위에서 새로운 도약의 장을 열어가겠습니다. 부족한 저를 믿고 지지해 주신다면, 회원 여러분과 함께 뛰고 소통하며 한국진공학회가 세계 속에서 더욱 빛날 수 있도록 모든 역량을 다해 헌신하겠습니다.</p>
+
+    <p class="statement-sign">제19대 한국진공학회 회장 후보 김 용 민</p>
+  </div>
+</section>
+
+<footer>
+  <div class="f-left">
+    제19대 한국진공학회 회장 후보 김용민
+    <span>단국대학교 과학기술대학 물리학과 교수</span>
+  </div>
+  <div class="f-right">
+    KOREAN VACUUM SOCIETY<br>
+    19TH PRESIDENTIAL ELECTION · 2026
+  </div>
+</footer>
+
+</body>
+</html>
